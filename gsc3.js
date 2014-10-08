@@ -43,7 +43,7 @@ else document.captureEvents(Event.MOUSEMOVE);
 document.onmousemove=mtrack;
 
 function mtrack(e) {
-	var lhs = (document.body.offsetWidth - 1000)/2;
+	var lhs = (document.body.offsetWidth - 1000)/2 + 10;
 	var xcurs = 0;
 	var ycurs = 0;
 
