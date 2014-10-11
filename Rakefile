@@ -23,4 +23,10 @@ task :update do
       EOF
     end
   end
+
+  pages = donations.map do |donation|
+    (x1, y1, _, _) = donation['rect'].split(",")
+    "+#{x1}+#{y1} pixels/#{donation['image']}"
+  end
+  sh "convert -page 1000x1000#{pages.join(" -page ")} -background none  -compose DstOver  -flatten image-map.png"
 end

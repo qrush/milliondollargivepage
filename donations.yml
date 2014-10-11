@@ -3,15 +3,19 @@
   rect: '0,0,10,10'
   href: http://www.friendsofnightpeople.com/
   alt: Donated to Friends of the Night People in Buffalo, NY
+  image: qrush.png
 - donor: Beau Gunderson
   rect: '10,0,20,10'
   href: http://www.donorschoose.org/
   alt: Teachers ask. You choose.
+  image: beau.png
 - donor: David Janke
   rect: '480,0,490,10'
   href: https://www.khanacademy.org/
   alt: Khan Academy helps ~numbermumbler mumble numbers better!!!1!
+  image: tiny-tilde.png
 - donor: A Mediocre Corporation
   rect: '20,0,120,50'
   href: https://meh.com/
   alt: The classic daily deal site returns
+  image: meh-50x100.jpg
