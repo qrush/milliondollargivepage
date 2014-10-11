@@ -7,16 +7,23 @@ task :update do
   donations = YAML.load_file("donations.yml")
   File.open("_includes/area.html", "w") do |f|
     donations.each do |donation|
-      f.write <<-EOF
-        <area onmouseover="d(this)" onmouseout="e(this)" shape="rect" coords="#{donation['rect']}" href="#{donation['href']}" title="#{donation['alt']}"/>
-      EOF
+      donation['images'].each do |(_, coords)|
+        f.write <<-EOF
+          <area onmouseover="d(this)" onmouseout="e(this)" shape="rect" coords="#{coords}" href="#{donation['href']}" title="#{donation['alt']}"/>
+        EOF
+      end
     end
   end
 
+  total = 0
   File.open("_includes/list.html", "w") do |f|
     donations.each do |donation|
-      (x1, y1, x2, y2) = donation['rect'].split(",").map(&:to_i)
-      amount = (y2 - y1) * (x2 - x1)
+      amount = 0
+      donation['images'].each do |(_, coords)|
+        (x1, y1, x2, y2) = coords.split(",").map(&:to_i)
+        amount += (y2 - y1) * (x2 - x1)
+      end
+      total += amount
 
       f.write <<-EOF
         <li><a href="#{donation['href']}" alt="#{donation['alt']}">#{donation['donor']}</a> donated $#{amount}</li>
@@ -24,9 +31,21 @@ task :update do
     end
   end
 
-  pages = donations.map do |donation|
-    (x1, y1, _, _) = donation['rect'].split(",")
-    "+#{x1}+#{y1} pixels/#{donation['image']}"
+  File.open("_includes/stats.html", "w") do |f|
+    f.write <<EOF
+<div id="stats">
+  <font id="stat1">Donated:</font> <font id="statgreen">$#{total}</font>
+  <br>
+  <font id="stat1">Available:</font> <font id="statgreen">#{1_000_000 - total}</font>
+</div>
+EOF
   end
-  sh "convert -page 1000x1000#{pages.join(" -page ")} -background none  -compose DstOver  -flatten image-map.png"
+
+  pages = donations.map { |d| d['images'] }.flatten.map do |images|
+    images.map do |(name, coords)|
+      (x1, y1, _, _) = coords.split(",")
+      "+#{x1}+#{y1} pixels/#{name}"
+    end
+  end.flatten
+  sh "convert -page 1000x1000#{pages.join(" -page ")} -background none -compose DstOver -flatten image-map.png"
 end

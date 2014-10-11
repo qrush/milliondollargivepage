@@ -1,21 +1,32 @@
 ---
 - donor: Nick Quaranto
-  rect: '0,0,10,10'
   href: http://www.friendsofnightpeople.com/
   alt: Donated to Friends of the Night People in Buffalo, NY
-  image: qrush.png
+  images:
+    qrush.png: '0,0,10,10'
 - donor: Beau Gunderson
-  rect: '10,0,20,10'
   href: http://www.donorschoose.org/
   alt: Teachers ask. You choose.
-  image: beau.png
+  images:
+    beau.png: '10,0,20,10'
 - donor: David Janke
-  rect: '480,0,490,10'
   href: https://www.khanacademy.org/
   alt: Khan Academy helps ~numbermumbler mumble numbers better!!!1!
-  image: tiny-tilde.png
+  images:
+    tiny-tilde.png: '480,0,490,10'
 - donor: A Mediocre Corporation
-  rect: '20,0,120,50'
   href: https://meh.com/
   alt: The classic daily deal site returns
+  images:
+    meh-50x100.jpg: '20,0,120,50'
   image: meh-50x100.jpg
+- donor: A Mediocre Corporation (Individuals)
+  href: https://meh.com/
+  alt: The classic daily deal site returns
+  images:
+    meh1.png: '490,0,530,40'
+    meh2.png: '150,390,190,430'
+    meh3.png: '830,860,870,900'
+    meh4.png: '240,320,280,360'
+    meh5.png: '720,220,760,260'
+    meh6.png: '180,540,220,580'
